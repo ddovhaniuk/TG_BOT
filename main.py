@@ -7,6 +7,10 @@ bot = telebot.TeleBot('7784812218:AAFrZ4D0mOC1AE4oAk9BeJFpJgRv0Tc-dWs')
 def site(message):
     webbrowser.open('https://nltu.edu.ua/')
 
+@bot.message_handler(commands=['inst'])
+def site(message):
+    webbrowser.open('https://www.instagram.com/nltu_unfu/')
+
 
 @bot.message_handler(commands=['start'])
 def main(message):
