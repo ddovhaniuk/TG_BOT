@@ -21,7 +21,8 @@ faculty_links = {
 # Створюємо головне меню
 def main_menu():
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    markup.add("🌐 Сайт", "📸 Instagram", "📅 Розклад")
+    markup.add("🌐 Сайт", "📸 Instagram")
+    markup.add("📅 Розклад", "🍽 Їдальня")
     return markup
 
 
@@ -55,6 +56,21 @@ def handle_menu(message):
 
     elif text == "📅 розклад":
         send_faculty_choices(message)
+
+    elif text == "🍽 їдальня":
+        # Надсилаємо локацію (координати НЛТУ їдальні, можна змінити)
+        bot.send_location(message.chat.id, latitude=49.82396713611374,  longitude=24.002855615057126)
+
+        # Повідомлення з кнопкою
+        msg = (
+            "🍲 <b>Їдальня НЛТУ</b>\n\n"
+            "Меню та акції ви можете переглядати у телеграм-каналі їдальні нашого університету."
+        )
+
+        markup = types.InlineKeyboardMarkup()
+        markup.add(types.InlineKeyboardButton("🔗 Відкрити канал", url="https://t.me/lisoteh"))
+
+        bot.send_message(message.chat.id, msg, parse_mode="HTML", reply_markup=markup)
 
 
 # Показати кнопки факультетів
